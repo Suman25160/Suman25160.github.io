@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -59,101 +58,1023 @@ p{margin:0}
 .mono{font-family:var(--mono)}
 
 /* section headers */
-.sec-head{display;gap:.9rem;margin-bottom(36px,6vw,72px);max-width:820px}
-.sec-no{font:500 .82rem var(--mono);color(--copper);display;align-items;gap:.8rem;letter-spacing:.04em}
-.sec-no::after{content:"";height:1px;width:56px;background(--line2)}
-.sec-head h2{font-size(2.6rem,6.4vw,5.2rem)}
-.sec-head .sub{color(--muted);font-size(1.05rem,1.6vw,1.25rem);max-width:56ch}
+.sec-head{display:grid;gap:.9rem;margin-bottom:clamp(36px,6vw,72px);max-width:820px}
+.sec-no{font:500 .82rem var(--mono);color:var(--copper);display:flex;align-items:center;gap:.8rem;letter-spacing:.04em}
+.sec-no::after{content:"";height:1px;width:56px;background:var(--line2)}
+.sec-head h2{font-size:clamp(2.6rem,6.4vw,5.2rem)}
+.sec-head .sub{color:var(--muted);font-size:clamp(1.05rem,1.6vw,1.25rem);max-width:56ch}
 
 /* buttons */
-.btn{--bx:0px;--by:0px;display;align-items;justify-content;gap:.6rem;min-height:48px;padding:.8rem 1.45rem;border-radius:999px;border:1px solid var(--copper);background(--copper);color(--on-copper);font:500 .95rem var(--sans);text-decoration;cursor;transform(var(--bx),var(--by));transition .3s,color .3s,border-color .3s,transform .25s var(--ease)}
-.btn{background(--gold);border-color(--gold);color(--on-copper)}
-.btn.ghost{background;color(--fg);border-color(--line2)}
-.btn.ghost{border-color(--copper);color(--copper);background}
-.btn .arr{display;transition .3s var(--ease)}
-.btn .arr{transform(4px)}
-.btn svg{width:18px;height:18px;flex}
-.btn-row{display;flex-wrap;gap:.8rem}
+.btn{--bx:0px;--by:0px;display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:48px;padding:.8rem 1.45rem;border-radius:999px;border:1px solid var(--copper);background:var(--copper);color:var(--on-copper);font:500 .95rem var(--sans);text-decoration:none;cursor:pointer;transform:translate(var(--bx),var(--by));transition:background .3s,color .3s,border-color .3s,transform .25s var(--ease)}
+.btn:hover{background:var(--gold);border-color:var(--gold);color:var(--on-copper)}
+.btn.ghost{background:transparent;color:var(--fg);border-color:var(--line2)}
+.btn.ghost:hover{border-color:var(--copper);color:var(--copper);background:transparent}
+.btn .arr{display:inline-block;transition:transform .3s var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-row{display:flex;flex-wrap:wrap;gap:.8rem}
 
-/* nav /
-.nav{position;top:0;left:0;right:0;z-index:60;padding-top(safe-area-inset-top,0px)}
-.nav::before{content:"";position;inset:0;z-index:-1;background(--nav-bg);-webkit-backdrop-filter(14px) saturate(1.2);backdrop-filter(14px) saturate(1.2);border-bottom:1px solid var(--line);opacity:0;transition .35s}
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:60;padding-top:env(safe-area-inset-top,0px)}
+.nav::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--nav-bg);-webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2);border-bottom:1px solid var(--line);opacity:0;transition:opacity .35s}
 .nav.scrolled::before{opacity:1}
-.nav .bar{width(1320px,calc(100% - 2var(--gut)));margin-inline;height:68px;display;align-items;justify-content;gap:1rem;position;z-index:2}
-.brand{font-family(--serif);font-size:1.5rem;color(--fg);text-decoration;display;align-items;gap:.6rem}
-.brand i{font-style;display;place-items;width:30px;height:30px;border:1px solid var(--copper);border-radius:50%;color(--copper);font:500 .78rem var(--mono)}
-.brand{color(--fg)}
-.menu{display;align-items;gap(.9rem,1.8vw,1.8rem);list-style;margin:0;padding:0}
-.menu a{color(--muted);text-decoration;font-size:.9rem;padding:.5rem 0;position;transition .25s}
-.menu a::after{content:"";position;left:0;right:0;bottom:.15rem;height:1px;background(--copper);transform(0);transform-origin;transition .35s var(--ease)}
-.menu a,.menu a.active{color(--fg)}
-.menu a.active::after,.menu a:hover::after{transform(1)}
-.nav-tools{display;align-items;gap:.5rem}
-.icon-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--line2);background;color(--fg);display;place-items;cursor;transition .25s,color .25s}
-.icon-btn{border-color(--copper);color(--copper)}
+.nav .bar{width:min(1320px,calc(100% - 2*var(--gut)));margin-inline:auto;height:68px;display:flex;align-items:center;justify-content:space-between;gap:1rem;position:relative;z-index:2}
+.brand{font-family:var(--serif);font-size:1.5rem;color:var(--fg);text-decoration:none;display:flex;align-items:center;gap:.6rem}
+.brand i{font-style:normal;display:grid;place-items:center;width:30px;height:30px;border:1px solid var(--copper);border-radius:50%;color:var(--copper);font:500 .78rem var(--mono)}
+.brand:hover{color:var(--fg)}
+.menu{display:flex;align-items:center;gap:clamp(.9rem,1.8vw,1.8rem);list-style:none;margin:0;padding:0}
+.menu a{color:var(--muted);text-decoration:none;font-size:.9rem;padding:.5rem 0;position:relative;transition:color .25s}
+.menu a::after{content:"";position:absolute;left:0;right:0;bottom:.15rem;height:1px;background:var(--copper);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.menu a:hover,.menu a.active{color:var(--fg)}
+.menu a.active::after,.menu a:hover::after{transform:scaleX(1)}
+.nav-tools{display:flex;align-items:center;gap:.5rem}
+.icon-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--line2);background:transparent;color:var(--fg);display:grid;place-items:center;cursor:pointer;transition:border-color .25s,color .25s}
+.icon-btn:hover{border-color:var(--copper);color:var(--copper)}
 .icon-btn svg{width:19px;height:19px}
-.nav-toggle{display}
-.progress{position;left:0;bottom:0;height:2px;width:100%;background(--copper);transform(0);transform-origin;z-index:3}
+.nav-toggle{display:none}
+.progress{position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--copper);transform:scaleX(0);transform-origin:left;z-index:3}
 @media (max-width:1040px){
-.nav-toggle{display}
-.menu{position;inset:0;z-index:1;flex-direction;align-items;justify-content;gap:.4rem;padding(90px + env(safe-area-inset-top,0px)) var(--gut) calc(40px + env(safe-area-inset-bottom,0px));background(--bg);visibility;opacity:0;transition .3s,visibility .3s}
-.menu.open{visibility;opacity:1}
-.menu a{font-family(--serif);font-size(2rem,8vw,3rem);color(--fg);padding:.25rem 0}
-.menu a::after{display}
-.menu a.active{color(--copper)}
+  .nav-toggle{display:grid}
+  .menu{position:fixed;inset:0;z-index:1;flex-direction:column;align-items:flex-start;justify-content:center;gap:.4rem;padding:calc(90px + env(safe-area-inset-top,0px)) var(--gut) calc(40px + env(safe-area-inset-bottom,0px));background:var(--bg);visibility:hidden;opacity:0;transition:opacity .3s,visibility .3s}
+  .menu.open{visibility:visible;opacity:1}
+  .menu a{font-family:var(--serif);font-size:clamp(2rem,8vw,3rem);color:var(--fg);padding:.25rem 0}
+  .menu a::after{display:none}
+  .menu a.active{color:var(--copper)}
 }
 
 /* hero */
-.hero{min-height:100vh;min-height:100svh;display;align-items;padding-block(110px + env(safe-area-inset-top,0px)) 90px;overflow;isolation}
-.hero::before{content:"";position;inset:0;z-index:-1;background(640px circle at var(--mx,72%) var(--my,35%),var(--copper-soft),transparent 62%)}
-#pcanvas{position;inset:0;width:100%;height:100%;z-index:-1;pointer-events}
-.hero-grid{display;grid-template-columns(0,1.02fr) minmax(0,.98fr);gap(24px,5vw,72px);align-items}
-.eyebrow{font:500 .8rem var(--mono);letter-spacing:.16em;color(--gold);display;align-items;gap:.9rem;margin-bottom:1.6rem}
-.eyebrow::before{content:"";width:34px;height:1px;background(--copper)}
-.hero h1{font-size(3.6rem,9vw,8rem);line-height:.92;letter-spacing:-.02em}
-.hero h1 .w{display;overflow;padding-bottom:.08em}
-.hero h1 .w>span{display}
-.js .hero h1 .w>span{transform(108%);animation 1.15s var(--ease) forwards}
-.js .hero h1 .w(2)>span{animation-delay:.14s}
-@keyframes rise{to{transform}}
-.tagline{font-family(--serif);font-style;font-size(1.6rem,3vw,2.5rem);line-height:1.15;margin-top:1.5rem;color(--fg);max-width:20ch}
-.roles{font:400 .9rem var(--mono);color(--copper);margin-top:1.3rem;display;flex-wrap;gap:.3rem 1rem}
-.roles span+span::before{content:"•";margin-right:1rem;color(--line2)}
-.intro{color(--muted);max-width:52ch;margin-top:1.4rem;font-size:1.06rem}
+.hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding-block:calc(110px + env(safe-area-inset-top,0px)) 90px;overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(640px circle at var(--mx,72%) var(--my,35%),var(--copper-soft),transparent 62%)}
+#pcanvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:clamp(24px,5vw,72px);align-items:center}
+.eyebrow{font:500 .8rem var(--mono);letter-spacing:.16em;color:var(--gold);display:flex;align-items:center;gap:.9rem;margin-bottom:1.6rem}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--copper)}
+.hero h1{font-size:clamp(3.6rem,9vw,8rem);line-height:.92;letter-spacing:-.02em}
+.hero h1 .w{display:block;overflow:hidden;padding-bottom:.08em}
+.hero h1 .w>span{display:inline-block}
+.js .hero h1 .w>span{transform:translateY(108%);animation:rise 1.15s var(--ease) forwards}
+.js .hero h1 .w:nth-child(2)>span{animation-delay:.14s}
+@keyframes rise{to{transform:none}}
+.tagline{font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,3vw,2.5rem);line-height:1.15;margin-top:1.5rem;color:var(--fg);max-width:20ch}
+.roles{font:400 .9rem var(--mono);color:var(--copper);margin-top:1.3rem;display:flex;flex-wrap:wrap;gap:.3rem 1rem}
+.roles span+span::before{content:"•";margin-right:1rem;color:var(--line2)}
+.intro{color:var(--muted);max-width:52ch;margin-top:1.4rem;font-size:1.06rem}
 .hero .btn-row{margin-top:2rem}
-.hero-links{display;flex-wrap;gap:.4rem 1.6rem;margin-top:1.6rem;font-size:.95rem}
-.hero-links a{color(--muted);text-decoration;border-bottom:1px solid var(--line2);padding:.3rem 0;transition .25s,border-color .25s}
-.hero-links a{color(--copper);border-color(--copper)}
-.visual{position;width:100%;max-width:640px;margin-inline;aspect-ratio:1}
-.visual svg{width:100%;height:100%;display;overflow}
-.v-line{fill;stroke(--line2);stroke-width:.8}
-.v-faint{fill;stroke(--line);stroke-width:.7}
-.orbit{fill;stroke(--gold);stroke-opacity:.55;stroke-width:1}
-.orbit.dash{stroke-dasharray:2 7;stroke-opacity:.5;stroke(--copper)}
-.planet{fill(--copper)}
-.planet.g{fill(--gold)}
-.core{fill(--copper)}
-.frag{font-family(--mono);font-size:13.5px;fill(--muted)}
-.frag.serif{font-family(--serif);font-style;font-size:34px;fill(--fg)}
-.frag.deva{font-family(--deva);font-size:26px;fill(--gold)}
-.leaf{fill(--bg);stroke(--gold);stroke-width:1;stroke-opacity:.7}
-.leaf-txt{font-family(--deva);font-size:15px;fill(--fg)}
-.sine{fill;stroke(--copper);stroke-width:1.4}
-.float-label{position;right:0;bottom:4%;background(--bg);border:1px solid var(--line2);padding:.85rem 1.1rem;font:400 .8rem/1.5 var(--mono);color(--muted);max-width:250px;display;gap:.8rem;align-items;border-radius:2px}
-.float-label strong{display;color(--fg);font-weight:500}
-.pulse{flex;width:8px;height:8px;border-radius:50%;background(--copper);margin-top:.45rem;animation 2.6s ease-in-out infinite}
+.hero-links{display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;margin-top:1.6rem;font-size:.95rem}
+.hero-links a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line2);padding:.3rem 0;transition:color .25s,border-color .25s}
+.hero-links a:hover{color:var(--copper);border-color:var(--copper)}
+.visual{position:relative;width:100%;max-width:640px;margin-inline:auto;aspect-ratio:1}
+.visual svg{width:100%;height:100%;display:block;overflow:visible}
+.v-line{fill:none;stroke:var(--line2);stroke-width:.8}
+.v-faint{fill:none;stroke:var(--line);stroke-width:.7}
+.orbit{fill:none;stroke:var(--gold);stroke-opacity:.55;stroke-width:1}
+.orbit.dash{stroke-dasharray:2 7;stroke-opacity:.5;stroke:var(--copper)}
+.planet{fill:var(--copper)}
+.planet.g{fill:var(--gold)}
+.core{fill:var(--copper)}
+.frag{font-family:var(--mono);font-size:13.5px;fill:var(--muted)}
+.frag.serif{font-family:var(--serif);font-style:italic;font-size:34px;fill:var(--fg)}
+.frag.deva{font-family:var(--deva);font-size:26px;fill:var(--gold)}
+.leaf{fill:var(--bg);stroke:var(--gold);stroke-width:1;stroke-opacity:.7}
+.leaf-txt{font-family:var(--deva);font-size:15px;fill:var(--fg)}
+.sine{fill:none;stroke:var(--copper);stroke-width:1.4}
+.float-label{position:absolute;right:0;bottom:4%;background:var(--bg);border:1px solid var(--line2);padding:.85rem 1.1rem;font:400 .8rem/1.5 var(--mono);color:var(--muted);max-width:250px;display:flex;gap:.8rem;align-items:flex-start;border-radius:2px}
+.float-label strong{display:block;color:var(--fg);font-weight:500}
+.pulse{flex:none;width:8px;height:8px;border-radius:50%;background:var(--copper);margin-top:.45rem;animation:pulse 2.6s ease-in-out infinite}
 @keyframes pulse{50%{box-shadow:0 0 0 7px transparent;opacity:.5}}
-.scroll-cue{position;left(--gut);bottom:26px;font:400 .72rem var(--mono);color(--muted);display;align-items;gap:.8rem}
-.scroll-cue::after{content:"";width:1px;height:38px;background(var(--copper),transparent)}
+.scroll-cue{position:absolute;left:var(--gut);bottom:26px;font:400 .72rem var(--mono);color:var(--muted);display:flex;align-items:center;gap:.8rem}
+.scroll-cue::after{content:"";width:1px;height:38px;background:linear-gradient(var(--copper),transparent)}
 @media (max-width:900px){
-.hero{align-items}
-.hero-grid{grid-template-columns:1fr}
-.visual{max-width:520px;margin-top:8px}
-.scroll-cue{display}
+  .hero{align-items:flex-start}
+  .hero-grid{grid-template-columns:1fr}
+  .visual{max-width:520px;margin-top:8px}
+  .scroll-cue{display:none}
 }
 
 /* statement */
-.statement{padding-block(60px,9vw,120px);border-block:1px solid var(--line);background(--bg2)}
-.statement p{font-family(--serif);font-size(1.9rem,4.6vw,3.9rem);line-height:1.12;max-width:22ch;letter-spacing:-.01em}
-.statement p span{color(--muted)}
-.statement .wra
+.statement{padding-block:clamp(60px,9vw,120px);border-block:1px solid var(--line);background:var(--bg2)}
+.statement p{font-family:var(--serif);font-size:clamp(1.9rem,4.6vw,3.9rem);line-height:1.12;max-width:22ch;letter-spacing:-.01em}
+.statement p span{color:var(--muted)}
+.statement .wrap{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,4vw,60px);align-items:start}
+.statement .glyph{font:400 clamp(3rem,7vw,6rem)/1 var(--serif);color:var(--copper)}
+@media (max-width:640px){.statement .wrap{grid-template-columns:1fr}}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(32px,6vw,96px)}
+.about-copy p{color:var(--muted);font-size:1.12rem;max-width:62ch}
+.about-copy p+p{margin-top:1.1rem}
+.about-copy p strong{color:var(--fg);font-weight:500}
+.interests{list-style:none;margin:2rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem}
+.interests li,.tags li{border:1px solid var(--line2);padding:.3rem .8rem;border-radius:999px;font:400 .8rem var(--mono);color:var(--fg);transition:border-color .25s,color .25s}
+.interests li:hover,.tags li:hover{border-color:var(--copper);color:var(--copper)}
+.tags{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.45rem}
+.timeline{list-style:none;margin:0;padding:0 0 0 1.6rem;border-left:1px solid var(--line2);display:grid;gap:1.9rem}
+.timeline li{position:relative}
+.timeline li::before{content:"";position:absolute;left:calc(-1.6rem - 4px);top:.55rem;width:7px;height:7px;border-radius:50%;background:var(--bg);border:1px solid var(--copper)}
+.timeline li:first-child::before{background:var(--copper)}
+.timeline .when{font:500 .8rem var(--mono);color:var(--copper)}
+.timeline .what{font-family:var(--serif);font-size:1.5rem;line-height:1.2;margin-top:.15rem}
+.timeline .where{color:var(--muted);font-size:.95rem;margin-top:.15rem}
+.tl-title{font:500 .85rem var(--mono);color:var(--muted);margin-bottom:1.3rem}
+.trio{margin-top:clamp(44px,7vw,90px);display:grid;grid-template-columns:repeat(3,1fr);position:relative;border-top:1px solid var(--line2)}
+.trio>div{padding:2.2rem clamp(0px,2vw,2rem) 0 0;position:relative}
+.trio>div::before{content:"";position:absolute;top:-4px;left:0;width:7px;height:7px;border-radius:50%;background:var(--copper)}
+.trio h3{font-size:1.9rem;margin-bottom:.6rem}
+.trio .k{font:500 .78rem var(--mono);color:var(--gold);display:block;margin-bottom:.9rem}
+.trio p{color:var(--muted);font-size:1rem}
+@media (max-width:900px){
+  .about-grid{grid-template-columns:1fr}
+  .trio{grid-template-columns:1fr;border-top:0;border-left:1px solid var(--line2);padding-left:1.6rem}
+  .trio>div{padding:0 0 2rem}
+  .trio>div::before{top:.5rem;left:calc(-1.6rem - 4px)}
+}
+
+/* research */
+#research{background:var(--bg2);border-top:1px solid var(--line)}
+.rcard{position:relative;display:grid;grid-template-columns:minmax(220px,300px) minmax(0,1fr);gap:clamp(24px,4vw,64px);border:1px solid var(--line);background:var(--bg);border-radius:3px;padding:clamp(24px,4vw,56px);transition:border-color .4s,transform .5s var(--ease)}
+.rcard+.rcard{margin-top:clamp(20px,3vw,32px)}
+.rcard::before{content:"";position:absolute;left:0;top:0;height:2px;width:100%;background:linear-gradient(90deg,var(--copper),var(--gold));transform:scaleX(.08);transform-origin:left;transition:transform .7s var(--ease)}
+.rcard:hover,.rcard:focus-within{border-color:var(--line2);transform:translateY(-3px)}
+.rcard:hover::before,.rcard:focus-within::before{transform:scaleX(1)}
+.rnum{font:400 clamp(4rem,8vw,7rem)/.9 var(--serif);color:var(--copper);display:block;margin-bottom:1.3rem}
+.rmeta dl{margin:0;display:grid;gap:1.05rem}
+.rmeta dt{font:400 .74rem var(--mono);color:var(--muted);margin-bottom:.15rem}
+.rmeta dd{margin:0;font-size:.98rem;line-height:1.45}
+.rarea{font:400 .82rem var(--mono);color:var(--gold);margin-bottom:.9rem}
+.rbody h3{font-size:clamp(1.9rem,3.6vw,3rem);line-height:1.08;max-width:22ch}
+.lede{font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,2vw,1.55rem);line-height:1.35;color:var(--fg);margin-top:1.2rem;max-width:44ch}
+.hl{margin-top:1.5rem;padding-left:1.1rem;border-left:2px solid var(--copper);color:var(--muted);max-width:62ch}
+.hl b{display:block;font:500 .74rem var(--mono);color:var(--copper);margin-bottom:.3rem}
+.hl ul{margin:.6rem 0 0;padding-left:1.1rem}
+.hl li{margin:.15rem 0}
+.rbody .kc{margin-top:1.6rem}
+.kc h4{font:400 .74rem var(--mono);color:var(--muted);margin-bottom:.6rem}
+.rbody .btn{margin-top:2rem}
+@media (max-width:900px){.rcard{grid-template-columns:1fr}.rnum{font-size:4rem;margin-bottom:.8rem}}
+
+/* map */
+.map-wrap{border:1px solid var(--line);border-radius:3px;padding:clamp(22px,4vw,52px);background:var(--card);position:relative;overflow:hidden}
+.thread+.thread{margin-top:clamp(30px,5vw,54px)}
+.thread-h{font:400 .82rem var(--mono);color:var(--muted);margin-bottom:1.1rem;display:flex;align-items:center;gap:.8rem}
+.thread-h b{color:var(--copper);font-weight:500}
+.chain{--g:46px;list-style:none;margin:0;padding:0;display:flex}
+.chain li{position:relative;flex:1 1 0;min-width:0;margin-right:var(--g)}
+.chain li:last-child{margin-right:0}
+.chain li:not(:last-child)::after{content:"";position:absolute;left:100%;top:50%;width:var(--g);height:1px;background:linear-gradient(90deg,var(--copper),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease);transition-delay:calc(var(--i)*.28s + .2s)}
+.chain li:not(:last-child)::before{content:"";position:absolute;left:100%;top:calc(50% - 2px);width:5px;height:5px;border-radius:50%;background:var(--gold);opacity:0;z-index:1}
+.map-wrap.in .chain li:not(:last-child)::after{transform:scaleX(1)}
+.map-wrap.in .chain li:not(:last-child)::before{animation:travel 3.6s linear infinite;animation-delay:calc(var(--i)*.5s + 1.4s)}
+@keyframes travel{0%{transform:translateX(0);opacity:0}15%{opacity:1}85%{opacity:1}100%{transform:translateX(var(--g));opacity:0}}
+.node{width:100%;height:100%;text-align:left;background:transparent;color:var(--fg);border:1px solid var(--line2);border-radius:3px;padding:.9rem 1rem;cursor:pointer;font:inherit;display:flex;flex-direction:column;gap:.25rem;transition:border-color .3s,background .3s}
+.node .ni{font:400 .7rem var(--mono);color:var(--muted)}
+.node .nt{font-family:var(--serif);font-size:1.32rem;line-height:1.1}
+.node:hover,.node[aria-pressed="true"]{border-color:var(--copper);background:var(--copper-soft)}
+.node.lit{border-color:var(--gold)}
+.node[aria-pressed="true"] .ni{color:var(--copper)}
+.map-detail{margin-top:clamp(24px,4vw,40px);border-top:1px solid var(--line);padding-top:1.3rem;color:var(--muted);min-height:4.6em;max-width:80ch}
+.map-detail strong{color:var(--fg);font-family:var(--serif);font-weight:400;font-size:1.4rem;display:block;margin-bottom:.15rem}
+.brandline{margin-top:1.5rem;font-family:var(--serif);font-style:italic;color:var(--gold);font-size:1.3rem}
+@media (max-width:900px){
+  .chain{--g:26px;flex-direction:column}
+  .chain li{margin-right:0;margin-bottom:var(--g)}
+  .chain li:last-child{margin-bottom:0}
+  .chain li:not(:last-child)::after{left:28px;top:100%;width:1px;height:var(--g);background:linear-gradient(var(--copper),var(--gold));transform:scaleY(0);transform-origin:top}
+  .map-wrap.in .chain li:not(:last-child)::after{transform:scaleY(1)}
+  .chain li:not(:last-child)::before{left:26px;top:100%}
+  @keyframes travel{0%{transform:translateY(0);opacity:0}15%{opacity:1}85%{opacity:1}100%{transform:translateY(var(--g));opacity:0}}
+}
+
+/* mathematics */
+.m-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.mcard{background:var(--bg);padding:1.4rem 1.4rem 1.7rem;display:flex;flex-direction:column;gap:.6rem;transition:background .35s;position:relative}
+.mcard:hover{background:var(--bg2)}
+.mcard .idx{font:500 .78rem var(--mono);color:var(--copper)}
+.viz{aspect-ratio:200/140;width:100%;margin:.2rem 0 .3rem;border-bottom:1px solid var(--line);padding-bottom:.4rem}
+.viz svg{width:100%;height:100%;display:block}
+.mcard h3{font-size:1.65rem;line-height:1.1}
+.mcard p{color:var(--muted);font-size:.93rem;line-height:1.5}
+.ln{fill:none;stroke:var(--line2);stroke-width:1}
+.dash{fill:none;stroke:var(--gold);stroke-width:1;stroke-dasharray:3 3;opacity:.8}
+.poly{fill:var(--copper-soft);stroke:var(--copper);stroke-width:1}
+.dotc{fill:var(--copper)}
+.dotm{fill:none;stroke:var(--muted);stroke-width:1}
+.dotd{fill:var(--muted);opacity:.55}
+.curve{fill:none;stroke:var(--copper);stroke-width:1.4;stroke-linejoin:round}
+.curve.g{stroke:var(--gold)}
+.curve.f{stroke:var(--fg);stroke-width:1.2;opacity:.9}
+.thin{fill:none;stroke:var(--copper);stroke-width:.8;opacity:.75}
+.bar{fill:var(--copper-soft);stroke:var(--copper);stroke-width:.7}
+.lb{font:400 8px var(--mono);fill:var(--muted)}
+.lb.big{font-size:10px;fill:var(--fg)}
+.mcard:hover .curve{stroke-dasharray:400;animation:draw 1.6s var(--ease) both}
+@keyframes draw{from{stroke-dashoffset:400}to{stroke-dashoffset:0}}
+@media (max-width:1100px){.m-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.m-grid{grid-template-columns:1fr}}
+
+/* writing (warm) */
+.writing{--fg:#F7EBDC;--muted:#D2BDA3;--line:rgba(247,235,220,.16);--line2:rgba(247,235,220,.3);--copper:#F08A3E;--gold:#E6BC7C;--on-copper:#1B0E06;background:radial-gradient(900px 500px at 15% 20%,#3b2114,transparent 65%),linear-gradient(160deg,#24140c,#33190d 55%,#1c0f08);color:var(--fg);border-block:1px solid #4a2a19}
+.writing a{color:var(--copper)}
+.w-grid{display:grid;grid-template-columns:minmax(280px,.8fr) minmax(0,1.2fr);gap:clamp(36px,7vw,110px);align-items:center}
+.book-stage{display:grid;place-items:center;perspective:1400px;padding:1rem}
+.book{position:relative;width:min(340px,78%);aspect-ratio:3/4.3;border-radius:3px 10px 10px 3px;background:linear-gradient(155deg,#a5501f 0%,#6a3014 52%,#2c1409 100%);box-shadow:0 40px 70px -20px rgba(0,0,0,.65),0 0 0 1px rgba(247,235,220,.08) inset;transform:rotateY(-16deg) rotateX(4deg);transform-style:preserve-3d;transition:transform .9s var(--ease);overflow:hidden}
+.book-stage:hover .book{transform:rotateY(-5deg) rotateX(1deg)}
+.book::before{content:"";position:absolute;inset:0 auto 0 0;width:9%;background:linear-gradient(90deg,rgba(0,0,0,.45),rgba(255,255,255,.07) 70%,transparent);z-index:2}
+.book svg{position:absolute;inset:0;width:100%;height:100%}
+.cover-title{font-family:var(--deva);font-weight:700;font-size:clamp(1.5rem,3.4vw,2.15rem);fill:#F7E4C8}
+.cover-sub{font-family:var(--deva);font-size:11.5px;fill:#E6BC7C}
+.cover-au{font-family:var(--deva);font-size:12px;fill:#F7E4C8;letter-spacing:.06em}
+.w-copy h2{font-size:clamp(2.6rem,6.4vw,5.2rem)}
+.w-copy .sec-no{margin-bottom:1rem}
+.w-title{font-family:var(--serif);font-style:italic;font-size:clamp(1.9rem,4vw,3.3rem);margin-top:1.8rem;line-height:1.05}
+.w-kind{font:400 .82rem var(--mono);color:var(--gold);margin-top:.6rem}
+.w-copy .desc{margin-top:1.4rem;color:var(--muted);font-size:1.12rem;max-width:52ch}
+.w-facts{list-style:none;margin:1.6rem 0 0;padding:0;display:grid;gap:.6rem;color:var(--muted);max-width:52ch}
+.w-facts li{padding-left:1.4rem;position:relative}
+.w-facts li::before{content:"";position:absolute;left:0;top:.75em;width:.7rem;height:1px;background:var(--copper)}
+.w-copy .btn{margin-top:2rem}
+@media (max-width:900px){.w-grid{grid-template-columns:1fr}.book-stage{order:2}}
+
+/* education */
+.edu{list-style:none;margin:0;padding:0;border-top:1px solid var(--line2)}
+.edu>li{display:grid;grid-template-columns:minmax(120px,190px) minmax(0,1fr) auto;gap:clamp(18px,4vw,56px);padding-block:clamp(26px,4vw,44px);border-bottom:1px solid var(--line);align-items:start}
+.edu .yrs{font:500 .85rem var(--mono);color:var(--copper);padding-top:.5rem}
+.edu h3{font-size:clamp(1.7rem,3vw,2.4rem)}
+.edu .sub{color:var(--muted);margin-top:.3rem}
+.edu dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem 1.6rem;margin:1.4rem 0 0;max-width:640px}
+.edu dt{font:400 .74rem var(--mono);color:var(--muted)}
+.edu dd{margin:.1rem 0 0}
+.edu .btn{margin-top:1.4rem}
+.stat{text-align:right;min-width:150px}
+.stat .num{font-family:var(--serif);font-size:clamp(3.2rem,6vw,5rem);line-height:.95;color:var(--fg)}
+.stat .num small{font-size:.4em;color:var(--muted);margin-left:.15em}
+.stat .lab{font:400 .74rem var(--mono);color:var(--muted);margin-top:.35rem}
+@media (max-width:900px){.edu>li{grid-template-columns:1fr;gap:.6rem}.stat{text-align:left;order:-1}.edu .yrs{padding-top:0}}
+
+/* skills */
+#skills{background:var(--bg2);border-block:1px solid var(--line)}
+.s-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(22px,3vw,44px)}
+.sgroup{border-top:1px solid var(--line2);padding-top:1.2rem}
+.sgroup h3{font-size:1.9rem;margin-bottom:1.1rem}
+.sgroup ul{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+.sgroup li{padding:.5rem 0;border-bottom:1px solid var(--line);color:var(--fg);display:flex;justify-content:space-between;gap:1rem;font-size:1rem;transition:color .25s,padding-left .3s var(--ease)}
+.sgroup li:hover{color:var(--copper);padding-left:.4rem}
+.langs{margin-top:clamp(28px,4vw,48px);color:var(--muted);border-top:1px solid var(--line);padding-top:1.3rem;max-width:80ch}
+.langs strong{color:var(--fg);font-weight:500}
+@media (max-width:1000px){.s-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.s-grid{grid-template-columns:1fr}}
+
+/* achievements */
+.a-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,24px)}
+.acard{border:1px solid var(--line);background:var(--card);border-radius:3px;padding:1.7rem;display:flex;flex-direction:column;gap:.9rem;transition:border-color .35s,background .35s}
+.acard:hover{border-color:var(--copper);background:var(--bg2)}
+.ico{width:46px;height:46px;border:1px solid var(--line2);border-radius:50%;display:grid;place-items:center;color:var(--copper);transition:background .3s,color .3s,border-color .3s}
+.ico svg{width:22px;height:22px}
+.acard:hover .ico{background:var(--copper);color:var(--on-copper);border-color:var(--copper)}
+.acard h3{font-size:1.65rem;line-height:1.12}
+.acard p{color:var(--muted);font-size:.97rem}
+.acard .ctx{font:400 .74rem var(--mono);color:var(--gold);margin-top:auto}
+@media (max-width:1000px){.a-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:620px){.a-grid{grid-template-columns:1fr}}
+
+/* beyond */
+#beyond{background:var(--bg2);border-block:1px solid var(--line)}
+.gallery{display:grid;grid-template-columns:1.5fr 1fr;grid-template-rows:1fr 1fr;gap:clamp(12px,1.6vw,20px);height:clamp(420px,58vw,640px)}
+.frame{position:relative;margin:0;overflow:hidden;border:1px solid var(--line2);border-radius:2px;background:var(--bg);isolation:isolate}
+.frame:first-child{grid-row:1/3}
+.frame svg,.frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.frame:hover svg,.frame:hover img{transform:scale(1.04)}
+.frame figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.6rem 1.3rem 1.1rem;background:linear-gradient(transparent,rgba(0,0,0,.8));color:#F4F0E8;font-size:.95rem}
+.frame figcaption b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(1.4rem,2.4vw,2.2rem);line-height:1.1}
+.frame figcaption span{font:400 .76rem var(--mono);color:#E6BC7C}
+.vf{fill:none;stroke:var(--fg);stroke-width:.8;opacity:.28}
+.vf.b{stroke:var(--copper);opacity:.95;stroke-width:1.4}
+.vf.g{stroke:var(--gold);opacity:.6}
+.vfill{fill:var(--copper-soft)}
+.photo-note{margin-top:1.6rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.4rem 3rem;color:var(--muted);max-width:900px}
+.photo-note b{display:block;color:var(--fg);font-weight:500}
+@media (max-width:760px){.gallery{grid-template-columns:1fr;grid-template-rows:none;height:auto}.frame{aspect-ratio:4/3}.frame:first-child{grid-row:auto;aspect-ratio:1}}
+
+/* leadership */
+.l-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line2)}
+.lcard{padding:2rem 2rem 2rem 0;border-right:1px solid var(--line);display:grid;gap:.9rem;align-content:start}
+.lcard+.lcard{padding-left:2rem}
+.lcard:last-child{border-right:0}
+.lcard .ico{border-radius:4px}
+.lcard h3{font-size:1.7rem}
+.lcard .role{font:400 .78rem var(--mono);color:var(--gold)}
+.lcard p{color:var(--muted);font-size:.97rem}
+.focus{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.5rem}
+@media (max-width:900px){.l-grid{grid-template-columns:1fr}.lcard,.lcard+.lcard{padding:1.6rem 0;border-right:0;border-bottom:1px solid var(--line)}}
+
+/* credentials */
+#credentials{background:var(--bg2);border-top:1px solid var(--line)}
+.vault{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:clamp(14px,2vw,22px)}
+.doc{border:1px solid var(--line);background:var(--bg);border-radius:3px;display:flex;flex-direction:column;overflow:hidden;transition:border-color .35s,transform .5s var(--ease)}
+.doc:hover,.doc:focus-within{border-color:var(--copper);transform:translateY(-4px)}
+.doc-prev{height:150px;background:linear-gradient(180deg,var(--card),var(--bg2));border-bottom:1px solid var(--line);display:grid;place-items:center;position:relative;overflow:hidden}
+.page{width:84px;height:106px;background:var(--bg);border:1px solid var(--line2);border-radius:2px;position:relative;padding:14px 10px;display:grid;gap:6px;align-content:start;transform:rotate(-3deg);transition:transform .6s var(--ease)}
+.page::before{content:"";position:absolute;top:-1px;right:-1px;width:18px;height:18px;background:linear-gradient(225deg,var(--bg2) 50%,var(--line2) 50%)}
+.page i{display:block;height:2px;background:var(--line2);border-radius:2px;transition:background .4s,width .5s var(--ease)}
+.page i:nth-child(1){width:60%;background:var(--copper)}
+.page i:nth-child(3){width:80%}.page i:nth-child(5){width:50%}
+.page.back{position:absolute;transform:rotate(6deg) translateX(14px);opacity:.5}
+.doc:hover .page{transform:rotate(0) translateY(-4px)}
+.doc:hover .page.back{transform:rotate(11deg) translateX(26px)}
+.doc:hover .page i{background:var(--gold)}
+.doc:hover .page i:nth-child(1){background:var(--copper);width:75%}
+.doc-body{padding:1.3rem 1.3rem 1.4rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.doc-type{font:400 .74rem var(--mono);color:var(--gold);display:flex;justify-content:space-between}
+.doc h3{font-size:1.45rem;line-height:1.15}
+.doc p{color:var(--muted);font-size:.9rem}
+.doc .btn{margin-top:auto;align-self:flex-start;min-height:44px;padding:.55rem 1.1rem;font-size:.88rem}
+.doc-body .btn{margin-top:.8rem}
+
+/* connect + contact */
+.connect{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(20px,4vw,52px);align-items:center;border:1px solid var(--line2);border-radius:3px;padding:clamp(24px,4vw,48px);background:var(--card)}
+.connect .in-logo{width:64px;height:64px;color:var(--copper)}
+.connect h2{font-size:clamp(2rem,4vw,3.2rem)}
+.connect p{color:var(--muted);margin-top:.4rem}
+@media (max-width:800px){.connect{grid-template-columns:1fr}}
+#contact{padding-bottom:clamp(60px,8vw,110px)}
+.c-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(30px,6vw,96px);align-items:end}
+.c-grid h2{font-size:clamp(2.6rem,6.6vw,5.6rem);line-height:1}
+.c-grid .lead{color:var(--muted);font-size:1.15rem;max-width:52ch;margin-top:1.4rem}
+.c-list{margin:0;display:grid;gap:1.4rem}
+.c-list dt{font:400 .74rem var(--mono);color:var(--muted)}
+.c-list dd{margin:.15rem 0 0;font-size:1.1rem;overflow-wrap:anywhere}
+.c-list a{color:var(--fg);text-decoration-color:var(--copper)}
+.c-list a:hover{color:var(--copper)}
+.c-grid .btn-row{margin-top:2rem}
+@media (max-width:900px){.c-grid{grid-template-columns:1fr;align-items:start}}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding-block:clamp(40px,6vw,70px) calc(28px + env(safe-area-inset-bottom,0px));position:relative;z-index:1}
+.f-grid{display:grid;grid-template-columns:1.2fr 1fr auto;gap:2rem;align-items:start}
+.f-name{font-family:var(--serif);font-size:2rem;line-height:1}
+.f-grid p{color:var(--muted);font-size:.95rem;margin-top:.5rem}
+.f-links{display:flex;gap:1.4rem;flex-wrap:wrap}
+.f-links a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--line2);padding:.2rem 0}
+.f-links a:hover{color:var(--copper);border-color:var(--copper)}
+.f-bottom{margin-top:clamp(30px,5vw,56px);padding-top:1.3rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.8rem;font:400 .82rem var(--mono);color:var(--muted)}
+.f-bottom .sig{color:var(--copper)}
+@media (max-width:800px){.f-grid{grid-template-columns:1fr}}
+
+/* cursor */
+.cursor{position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border:1px solid var(--copper);border-radius:50%;pointer-events:none;z-index:90;opacity:0;transition:opacity .3s,width .3s,height .3s,margin .3s,background .3s}
+.cursor.on{opacity:.7}
+.cursor.hot{width:56px;height:56px;margin:-28px 0 0 -28px;background:var(--copper-soft)}
+
+/* reveals */
+.js .reveal{opacity:0;transform:translateY(16px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.js .reveal.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0s!important}
+  .js .reveal,.js .hero h1 .w>span{opacity:1;transform:none}
+  .chain li:not(:last-child)::before{display:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="cursor" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="bar">
+    <a class="brand" href="#top" aria-label="Suman Sethi — back to top"><i aria-hidden="true">Σ</i>Suman Sethi</a>
+    <div class="nav-tools">
+      <nav aria-label="Primary">
+        <ul class="menu" id="menu">
+          <li><a href="#about">About</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#mathematics">Mathematics</a></li>
+          <li><a href="#writing">Writing</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#achievements">Achievements</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch to light theme" title="Switch theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
+      </button>
+      <button class="icon-btn nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path id="navIcon" d="M4 8h16M4 16h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+</header>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" id="top" aria-labelledby="hero-name">
+  <canvas id="pcanvas" aria-hidden="true"></canvas>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">BS–MS STUDENT · IISER BERHAMPUR</p>
+      <h1 id="hero-name"><span class="w"><span>Suman</span></span> <span class="w"><span>Sethi</span></span></h1>
+      <p class="tagline">Exploring the mathematics behind scientific ideas.</p>
+      <p class="roles"><span>Mathematics</span><span>Scientific Research</span><span>Computation</span><span>Writing</span></p>
+      <p class="intro">Research-oriented BS–MS student exploring mathematics, scientific history, mathematical modelling, computation, and interdisciplinary approaches to understanding complex scientific phenomena.</p>
+      <div class="btn-row">
+        <a class="btn magnetic" href="#research">Explore Research <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn ghost magnetic" id="cvBtn" href="#education">View CV <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+      <p class="hero-links">
+        <a href="https://www.linkedin.com/in/suman-sethi-824197388/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:25160@iiserbpr.ac.in">Email</a>
+        <a href="#research">Research Reports</a>
+      </p>
+    </div>
+
+    <div class="visual">
+      <svg viewBox="0 0 600 600" role="img" aria-label="Animated composition: orbital ellipses with moving planets, a polar coordinate grid, a sine curve, a Sanskrit manuscript fragment and number-theory notation.">
+        <defs>
+          <radialGradient id="core-g"><stop offset="0" stop-color="#D97732" stop-opacity=".6"/><stop offset="1" stop-color="#D97732" stop-opacity="0"/></radialGradient>
+          <path id="o1" d="M90 300a210 120 0 1 0 420 0a210 120 0 1 0 -420 0"/>
+          <path id="o2" d="M150 300a150 84 0 1 0 300 0a150 84 0 1 0 -300 0"/>
+          <path id="o3" d="M50 300a250 250 0 1 0 500 0a250 250 0 1 0 -500 0"/>
+        </defs>
+        <g id="polar"></g>
+        <circle cx="300" cy="300" r="70" fill="url(#core-g)"/>
+        <g transform="rotate(-24 300 300)"><use href="#o1" class="orbit"/><circle r="5" class="planet"><animateMotion dur="30s" repeatCount="indefinite"><mpath href="#o1"/></animateMotion></circle></g>
+        <g transform="rotate(30 300 300)"><use href="#o2" class="orbit"/><circle r="4" class="planet g"><animateMotion dur="19s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#o2"/></animateMotion></circle></g>
+        <use href="#o3" class="orbit dash"/>
+        <circle r="3.4" class="planet"><animateMotion dur="60s" repeatCount="indefinite"><mpath href="#o3"/></animateMotion></circle>
+        <circle cx="300" cy="300" r="5.5" class="core"/>
+        <g id="dyn"></g>
+        <text x="30" y="52" class="frag">(p/q)(q/p) = (−1)^((p−1)(q−1)/4)</text>
+        <text x="448" y="112" class="frag serif">ℤ[i]</text>
+        <text x="418" y="352" class="frag">ζ(s) = Σ n⁻ˢ</text>
+        <text x="30" y="586" class="frag">p ≡ 1 (mod 4)</text>
+        <text x="452" y="574" class="frag deva">शून्य</text>
+        <g transform="rotate(-5 110 236)">
+          <rect x="24" y="206" width="188" height="60" rx="8" class="leaf"/>
+          <circle cx="42" cy="236" r="4.5" fill="none" stroke="#C49A5A" stroke-opacity=".7"/>
+          <text x="62" y="229" class="leaf-txt">ज्या · कोटिज्या</text>
+          <text x="62" y="252" class="frag" style="font-size:11px">jyā · koṭijyā</text>
+        </g>
+      </svg>
+      <div class="float-label"><span class="pulse" aria-hidden="true"></span><span>Currently exploring:<strong>Mathematics + Natural Sciences</strong></span></div>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">Scroll</div>
+</section>
+
+<!-- STATEMENT -->
+<div class="statement">
+  <div class="wrap">
+    <span class="glyph" aria-hidden="true">∎</span>
+    <p class="reveal">Mathematics is not only a language for describing nature. <span>It is also a way of discovering hidden structure.</span></p>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" aria-labelledby="about-h">
+  <div class="wrap">
+    <header class="sec-head reveal"><p class="sec-no">01 · Profile</p><h2 id="about-h">About</h2></header>
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <p><strong>Suman Sethi</strong> is a BS–MS student at IISER Berhampur with a strong interest in mathematics and interdisciplinary scientific research. His work so far spans pure mathematics, mathematical astronomy, and the mathematical analysis of historical scientific literature.</p>
+        <p>He is drawn to the point where mathematical theory meets scientific application: mathematical modelling and quantitative approaches to problems in physics, astronomy, evolutionary biology and related fields — and to how mathematical and computational frameworks can be built to describe, analyse and understand complex scientific phenomena.</p>
+        <ul class="interests" aria-label="Research interests">
+          <li>Number Theory</li><li>Abstract Algebra</li><li>Mathematical Astronomy</li><li>Historical scientific mathematics</li><li>Mathematical modelling</li><li>Planetary computation</li><li>Programming &amp; data science</li><li>Interdisciplinary applications</li>
+        </ul>
+      </div>
+      <div class="reveal" style="--d:.12s">
+        <p class="tl-title">Timeline</p>
+        <ol class="timeline">
+          <li><span class="when">2025 → Present</span><p class="what">BS–MS Integrated Programme</p><p class="where">IISER Berhampur</p></li>
+          <li><span class="when">May – Jul 2026</span><p class="what">Research Intern — Number Theory</p><p class="where">Department of Mathematical Sciences, IISER Berhampur</p></li>
+          <li><span class="when">Jun – Jul 2026</span><p class="what">Research Intern — Sanskrit Scientific Literature</p><p class="where">CSU Ashtaadashi Scheme</p></li>
+          <li><span class="when">2026</span><p class="what">Independent Creative Writing Project</p><p class="where">Shunya Ke Us Paar</p></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="trio reveal" aria-label="Three connected dimensions">
+      <div><span class="k">The researcher</span><h3>Structure</h3><p>Mathematics, science and interdisciplinary research — reading old ideas and new ones with the same rigour.</p></div>
+      <div><span class="k">The computational thinker</span><h3>Method</h3><p>Python, R, SymPy, data and mathematical modelling — checking claims by computing them.</p></div>
+      <div><span class="k">The creator</span><h3>Expression</h3><p>Writing, photography and science communication — carrying an idea to someone else.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research" aria-labelledby="research-h">
+  <div class="wrap">
+    <header class="sec-head reveal"><p class="sec-no">02 · Investigations</p><h2 id="research-h">Research</h2><p class="sub">Exploring mathematical structures across theory, history, and scientific applications.</p></header>
+
+    <article class="rcard reveal">
+      <div class="rmeta">
+        <span class="rnum" aria-hidden="true">i</span>
+        <dl>
+          <div><dt>Period</dt><dd>June – July 2026</dd></div>
+          <div><dt>Role</dt><dd>Research Intern</dd></div>
+          <div><dt>Program</dt><dd>CSU Ashtaadashi Scheme · Government of India · NIT Calicut</dd></div>
+          <div><dt>Mentor</dt><dd>Dr. Venkateswara Pai, IISER Pune</dd></div>
+        </dl>
+      </div>
+      <div class="rbody">
+        <p class="rarea">Mathematics · Astronomy · History of Science</p>
+        <h3>Exploring Sanskrit Literature to Unravel Hidden Scientific Knowledge</h3>
+        <p class="lede">An interdisciplinary investigation into mathematical and astronomical knowledge embedded in classical Sanskrit scientific literature.</p>
+        <div class="hl"><b>Highlight</b>Reconstructed arithmetic algorithms, trigonometric identities, and planetary computation methods from translated Sanskrit scientific texts spanning approximately 800 BCE–1150 CE, written in rigorous modern mathematical notation across two phases: Mathematics, then Astronomy &amp; Trigonometry. Alongside, designed a structured workflow for recording literature, derivations and references.</div>
+        <div class="kc"><h4>Research areas</h4>
+          <ul class="tags"><li>Mathematics</li><li>Astronomy</li><li>History of Science</li><li>Trigonometry</li><li>Scientific Literature</li></ul></div>
+        <a class="btn magnetic" href="https://drive.google.com/file/d/1rw5SX2XhvRkx81Swwhg_s5runzSfiaSB/view" target="_blank" rel="noopener noreferrer">Read Research Report <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+    <article class="rcard reveal">
+      <div class="rmeta">
+        <span class="rnum" aria-hidden="true">ii</span>
+        <dl>
+          <div><dt>Period</dt><dd>May – July 2026</dd></div>
+          <div><dt>Role</dt><dd>Research Intern</dd></div>
+          <div><dt>Department</dt><dd>Department of Mathematical Sciences, IISER Berhampur</dd></div>
+          <div><dt>Mentor</dt><dd>Dr. Amiya Kumar Mondal</dd></div>
+        </dl>
+      </div>
+      <div class="rbody">
+        <p class="rarea">Number Theory · Abstract Algebra · Cryptography</p>
+        <h3>Number Theory: The Law of Quadratic Reciprocity</h3>
+        <p class="lede">An intensive study of quadratic reciprocity and related results in elementary number theory, with emphasis on rigorous proof construction and computational verification.</p>
+        <div class="hl"><b>Highlight</b>Developed a CRT-based proof of the Law of Quadratic Reciprocity, then extended it to related results:
+          <ul><li>Gauss's Lemma</li><li>The Jacobi symbol and the supplementary laws</li><li>The Solovay–Strassen primality test</li><li>The Goldwasser–Micali cryptosystem</li></ul>
+          <span style="display:block;margin-top:.7rem">Numerical claims were verified with Python and SymPy. A companion applications report links quadratic residue theory to Mersenne number compositeness testing and Paley graph constructions.</span></div>
+        <div class="kc"><h4>Research areas</h4>
+          <ul class="tags"><li>Number Theory</li><li>Abstract Algebra</li><li>Cryptography</li><li>Prime Testing</li><li>Mathematical Proof</li></ul></div>
+        <a class="btn magnetic" href="https://drive.google.com/file/d/12mZOYmBXPNIIunout8GVU1rZrq_oEpog/view" target="_blank" rel="noopener noreferrer">Read Research Report <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- RESEARCH MAP -->
+<section id="map" aria-labelledby="map-h">
+  <div class="wrap">
+    <header class="sec-head reveal"><p class="sec-no">03 · Connections</p><h2 id="map-h">Research map</h2><p class="sub">Two threads, one habit of mind. Select a step to see what it refers to.</p></header>
+    <div class="map-wrap reveal" id="mapWrap">
+      <div class="thread">
+        <p class="thread-h"><b>Thread I</b> Number theory</p>
+        <ol class="chain">
+          <li style="--i:0"><button class="node" type="button" aria-pressed="false" data-t="Number Theory" data-d="Elementary number theory approached through rigorous proof — the setting of the internship with Dr. Amiya Kumar Mondal at IISER Berhampur."><span class="ni">i.1</span><span class="nt">Number Theory</span></button></li>
+          <li style="--i:1"><button class="node" type="button" aria-pressed="false" data-t="Quadratic Reciprocity" data-d="A complete CRT-based proof, built from Wilson's theorem, Euler's criterion and Chinese Remainder Theorem coordinate pairing."><span class="ni">i.2</span><span class="nt">Quadratic Reciprocity</span></button></li>
+          <li style="--i:2"><button class="node" type="button" aria-pressed="false" data-t="Prime Testing" data-d="The Solovay–Strassen primality test, and Mersenne number compositeness testing in the companion applications report."><span class="ni">i.3</span><span class="nt">Prime Testing</span></button></li>
+          <li style="--i:3"><button class="node" type="button" aria-pressed="false" data-t="Cryptography" data-d="The Goldwasser–Micali cryptosystem, where the difficulty of deciding quadratic residuosity carries the security."><span class="ni">i.4</span><span class="nt">Cryptography</span></button></li>
+        </ol>
+      </div>
+      <div class="thread">
+        <p class="thread-h"><b>Thread II</b> History &amp; astronomy</p>
+        <ol class="chain">
+          <li style="--i:0"><button class="node" type="button" aria-pressed="false" data-t="Historical Mathematics" data-d="How mathematical ideas developed from ancient to modern forms, read through the texts that carried them."><span class="ni">ii.1</span><span class="nt">Historical Mathematics</span></button></li>
+          <li style="--i:1"><button class="node" type="button" aria-pressed="false" data-t="Sanskrit Scientific Literature" data-d="Classical texts from roughly 800 BCE to 1150 CE, studied through English translations and rewritten in modern mathematical notation."><span class="ni">ii.2</span><span class="nt">Sanskrit Scientific Literature</span></button></li>
+          <li style="--i:2"><button class="node" type="button" aria-pressed="false" data-t="Astronomy" data-d="The second research phase, Astronomy &amp; Trigonometry: the astronomical procedures described in the texts."><span class="ni">ii.3</span><span class="nt">Astronomy</span></button></li>
+          <li style="--i:3"><button class="node" type="button" aria-pressed="false" data-t="Trigonometry" data-d="Trigonometric identities reconstructed from the texts and stated in modern notation."><span class="ni">ii.4</span><span class="nt">Trigonometry</span></button></li>
+          <li style="--i:4"><button class="node" type="button" aria-pressed="false" data-t="Planetary Computation" data-d="Planetary computation methods reconstructed as reproducible mathematical documentation."><span class="ni">ii.5</span><span class="nt">Planetary Computation</span></button></li>
+        </ol>
+      </div>
+      <div class="map-detail" id="mapDetail" aria-live="polite"></div>
+      <p class="brandline">From mathematical structure to scientific understanding.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MATHEMATICS -->
+<section id="mathematics" aria-labelledby="math-h" style="padding-top:0">
+  <div class="wrap">
+    <header class="sec-head reveal"><p class="sec-no">04 · Structures</p><h2 id="math-h">Mathematics</h2><p class="sub">Learning mathematics as a language of structure.</p></header>
+    <div class="m-grid reveal">
+      <article class="mcard"><span class="idx">01</span><div class="viz" data-viz="nt" role="img" aria-label="Quadratic residues modulo 13 arranged on a circle"></div><h3>Number Theory</h3><p>Quadratic residues modulo 13, the arena of the Legendre symbol.</p></article>
+      <article class="mcard"><span class="idx">02</span><div class="viz" data-viz="alg" role="img" aria-label="Gaussian primes in the lattice of Gaussian integers"></div><h3>Abstract Algebra</h3><p>Gaussian primes in the ring ℤ[i]: norms, units and factorisation.</p></article>
+      <article class="mcard"><span class="idx">03</span><div class="viz" data-viz="astro" role="img" aria-label="Epicyclic orbit around a central point"></div><h3>Mathematical Astronomy</h3><p>Epicyclic motion, a classical device for computing planetary positions.</p></article>
+      <article class="mcard"><span class="idx">04</span><div class="viz" data-viz="model" role="img" aria-label="Logistic growth curves from four starting values"></div><h3>Mathematical Modelling</h3><p>Logistic growth from four starting values, all settling toward one limit.</p></article>
+      <article class="mcard"><span class="idx">05</span><div class="viz" data-viz="lin" role="img" aria-label="A grid deformed by a linear map with eigenvector directions marked"></div><h3>Linear Algebra</h3><p>A linear map deforms the grid; its eigenvector directions stay fixed.</p></article>
+      <article class="mcard"><span class="idx">06</span><div class="viz" data-viz="calc" role="img" aria-label="Riemann sum rectangles and a tangent line under the sine curve"></div><h3>Calculus</h3><p>Riemann sums and a tangent line for sin x on [0, π].</p></article>
+      <article class="mcard"><span class="idx">07</span><div class="viz" data-viz="qm" role="img" aria-label="Particle-in-a-box wavefunctions for n equal to 1, 2 and 3"></div><h3>Classical &amp; Quantum Mechanics</h3><p>Particle-in-a-box wavefunctions for n = 1, 2, 3, with energy Eₙ ∝ n².</p></article>
+      <article class="mcard"><span class="idx">08</span><div class="viz" data-viz="ulam" role="img" aria-label="Prime numbers arranged on an Ulam spiral"></div><h3>Computational Mathematics</h3><p>Primes on an Ulam spiral, where diagonal structure appears.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- WRITING -->
+<section class="writing" id="writing" aria-labelledby="writing-h">
+  <div class="wrap w-grid">
+    <div class="book-stage reveal" aria-hidden="true">
+      <div class="book">
+        <svg viewBox="0 0 340 488" preserveAspectRatio="xMidYMid slice">
+          <g fill="none" stroke="#F7E4C8" stroke-opacity=".28">
+            <circle cx="180" cy="190" r="40"/><circle cx="180" cy="190" r="70"/><circle cx="180" cy="190" r="100"/><circle cx="180" cy="190" r="132"/>
+          </g>
+          <circle cx="180" cy="190" r="40" fill="#1c0f08" fill-opacity=".55" stroke="#E6BC7C" stroke-width="1.4"/>
+          <text x="180" y="204" text-anchor="middle" font-family="Instrument Serif,Georgia,serif" font-size="44" fill="#E6BC7C">0</text>
+          <path d="M180 150 A40 40 0 0 1 220 190" fill="none" stroke="#F08A3E" stroke-width="1.6"/>
+          <circle cx="292" cy="92" r="5" fill="#F08A3E"/>
+          <circle cx="292" cy="92" r="11" fill="none" stroke="#F08A3E" stroke-opacity=".5"/>
+          <text class="cover-title" x="180" y="374" text-anchor="middle">शून्य के उस पार</text>
+          <line x1="130" y1="394" x2="230" y2="394" stroke="#E6BC7C" stroke-opacity=".6"/>
+          <text class="cover-sub" x="180" y="418" text-anchor="middle">विज्ञान पर आधारित रहस्य उपन्यास</text>
+          <text class="cover-au" x="180" y="456" text-anchor="middle">सुमन सेठी</text>
+        </svg>
+      </div>
+    </div>
+    <div class="w-copy reveal">
+      <p class="sec-no">05 · The novel</p>
+      <h2 id="writing-h">Writing</h2>
+      <p class="w-title">Shunya Ke Us Paar</p>
+      <p class="w-kind">A science-based mystery novel</p>
+      <p class="desc">An original Hindi-language mystery novel combining scientific ideas, mystery, and creative storytelling.</p>
+      <ul class="w-facts">
+        <li>An independent creative writing project.</li>
+        <li>A full-length manuscript, independently typeset as a publication-quality book.</li>
+        <li>Checked through a complete typographic audit for a clean build suitable for print or digital publication.</li>
+      </ul>
+      <a class="btn magnetic" href="https://drive.google.com/file/d/16WHqCkc0Is8uV9mOREIy03bsjQtSVjPW/view" target="_blank" rel="noopener noreferrer">Read / Explore the Novel <span class="arr" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" aria-labelledby="edu-h">
+  <div class="wrap">
+    <header class="sec-head reveal"><p class="sec-no">06 · Foundations</p><h2 id="edu-h">Education</h2></header>
+    <ol class="edu">
+      <li class="reveal">
+        <p class="yrs">2025 – Present</p>
+        <div>
+          <h3>IISER Berhampur</h3>
+          <p class="sub">BS–MS Integrated Programme</p>
+          <dl>
+            <div><dt>Year</dt><dd>2nd year · Pre-major</dd></div>
+            <div><dt>Prospective major</dt><dd>Mathematics</dd></div>
+          </dl>
+          <div class="kc" style="margin-top:1.5rem"><h4>Relevant coursework</h4>
+            <ul class="tags"><li>Linear Algebra</li><li>Calculus</li><li>Number Theory</li><li>Abstract Mathematics</li><li>Classical Mechanics</li><li>Quantum Mechanics</li><li>Python Programming</li><li>Data Analytics</li></ul></div>
+        </div>
+        <div class="stat" aria-label="Current CPI 8.00 out of 10"><div class="num"><span class="count" data-to="8.00" data-dec="2">8.00</span><small>/ 10</small></div><p class="lab">Current CPI</p></div>
+      </li>
+      <li class="reveal">
+        <p class="yrs">2022 – 24</p>
+        <div>
+          <h3>Class XII</h3>
+          <p class="sub">Aaryan Gurukul HS School · CHSE Odisha</p>
+          <a class="btn ghost" href="https://drive.google.com/file/d/1NFqDvN-o6Q1-fRsFg8dFn9dSyFP-wO5O/view" target="_blank" rel="noopener noreferrer">View Class XII Marksheet <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+        <div class="stat" aria-label="89.33 percent"><div class="num"><span class="count" data-to="89.33" data-dec="2">89.33</span><small>%</small></div><p class="lab">Higher Secondary</p></div>
+      </li>
+      <li class="reveal">
+        <p class="yrs">2021 – 22</p>
+        <div>
+          <h3>Class X</h3>
+          <p class="sub">SSVM Ramaharinagar · BSE Odisha</p>
+          <a class="btn ghost" href="https://drive.google.com/file/d/1TUehEbtam377PcEt0bnz7M9DZ1KcxTvt/view" target="_blank" rel="noopener noreferrer">View Class X Marksheet <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+        <div class="stat" aria-label="95.86 percent"><div class="num"><span class="count" data-to="95.86" data-dec="2">95.86</span><small>%</small></div><p class="lab">Secondary</p></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" aria-labelledby="skills-h">
+  <div class="wrap">
+    <header class="sec-head reveal"><p class="sec-no">07 · Toolkit</p><h2 id="skills-h">Skills</h2><p class="sub">Grouped by what they are used for, not scored.</p></header>
+    <div class="s-grid reveal">
+      <div class="sgroup"><h3>Mathematics</h3><ul><li>Number Theory</li><li>Abstract Algebra</li><li>Mathematical Proof</li><li>Mathematical Modelling</li><li>Mathematical Astronomy</li></ul></div>
+      <div class="sgroup"><h3>Programming &amp; Data</h3><ul><li>Python</li><li>R</li><li>SymPy</li><li>Data Analytics</li></ul></div>
+      <div class="sgroup"><h3>Scientific Communication</h3><ul><li>LaTeX / XeLaTeX</li><li>Overleaf</li><li>Technical Documentation</li><li>Scientific Writing</li></ul></div>
+      <div class="sgroup"><h3>Tools</h3><ul><li>Microsoft Office</li><li>Database Management Systems</li><li>PGDCA</li></ul></div>
+    </div>
+    <p class="langs reveal"><strong>Languages.</strong> Working proficiency in English, Hindi and Odia, with reading knowledge of translated and annotated Sanskrit scientific literature.</p>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements" aria-labelledby="ach-h">
+  <div class="wrap">
+    <header class="sec-head reveal"><p class="sec-no">08 · Recognition</p><h2 id="ach-h">Achievements</h2></header>
+    <div class="a-grid">
+      <article class="acard reveal"><span class="ico" data-i="medal" aria-hidden="true"></span><h3>Pathani Samanta Mathematics Scholarship Examination</h3><p>Ranked among the top performers in this state-level mathematics talent examination conducted by the Government of Odisha.</p><span class="ctx">State level · Odisha</span></article>
+      <article class="acard reveal" style="--d:.08s"><span class="ico" data-i="pi" aria-hidden="true"></span><h3>Π-Day Mathematics Quiz</h3><p>Top finalist in the IISER Berhampur Π-Day Mathematics Quiz Competition, on advanced mathematical concepts and logical reasoning.</p><span class="ctx">IISER Berhampur</span></article>
+      <article class="acard reveal" style="--d:.16s"><span class="ico" data-i="book" aria-hidden="true"></span><h3>Self-directed study</h3><p>Independent study of undergraduate and graduate-level Abstract Algebra, Number Theory and Mathematical Astronomy, beyond the regular curriculum.</p><span class="ctx">Proof writing</span></article>
+      <article class="acard reveal"><span class="ico" data-i="flask" aria-hidden="true"></span><h3>Science exhibitions &amp; outreach</h3><p>Participation in multiple Block- and District-level Science Exhibitions and outreach activities.</p><span class="ctx">Block &amp; district level</span></article>
+      <article class="acard reveal" style="--d:.08s"><span class="ico" data-i="quiz" aria-hidden="true"></span><h3>Q-CELL Quiz Competitions</h3><p>Participation in Q-CELL Quiz Competitions and other academic quizzes.</p><span class="ctx">Academic quizzes</span></article>
+      <article class="acard reveal" style="--d:.16s"><span class="ico" data-i="camera" aria-hidden="true"></span><h3>Shutter &amp; Shloka 2026 — First Prize</h3><p>First Prize in the Shutter &amp; Shloka 2026 &amp; Postcards from Afar Photography Competition, organised by Pixophiles, IISER Berhampur.</p><span class="ctx">Photography</span></article>
+    </div>
+  </div>
+</section>
+
+<!-- BEYOND MATHEMATICS -->
+<section id="beyond" aria-labelledby="beyond-h">
+  <div class="wrap">
+    <header class="sec-head reveal"><p class="sec-no">09 · Visual storytelling</p><h2 id="beyond-h">Beyond Mathematics</h2><p class="sub">Photography is a second way of paying attention: to light, structure and the story inside a frame.</p></header>
+    <div class="gallery reveal">
+      <figure class="frame">
+        <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="400" height="400" fill="var(--bg)"/>
+          <rect width="400" height="400" fill="var(--copper-soft)"/>
+          <g class="vf"><line x1="133" y1="0" x2="133" y2="400"/><line x1="267" y1="0" x2="267" y2="400"/><line x1="0" y1="133" x2="400" y2="133"/><line x1="0" y1="267" x2="400" y2="267"/></g>
+          <path class="vf g" d="M0 267 C90 240 150 292 240 262 S350 240 400 260"/>
+          <circle cx="267" cy="133" r="46" class="vf b"/><circle cx="267" cy="133" r="4" fill="var(--copper)"/>
+          <g class="vf b"><path d="M40 70v-30h30M360 70v-30h-30M40 330v30h30M360 330v30h-30"/></g>
+        </svg>
+        <figcaption><span>Photography Competition · Pixophiles, IISER Berhampur</span><b>Shutter &amp; Shloka 2026 — First Prize</b></figcaption>
+      </figure>
+      <figure class="frame">
+        <svg viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="300" height="200" fill="var(--bg)"/>
+          <g class="vf"><circle cx="150" cy="100" r="30"/><circle cx="150" cy="100" r="55"/><circle cx="150" cy="100" r="80"/></g>
+          <path class="vf b" d="M150 100 m-30 0 a30 30 0 0 1 30 -30"/>
+          <path class="vf g" d="M150 20 L150 45 M150 155 L150 180 M70 100 L95 100 M205 100 L230 100"/>
+        </svg>
+        <figcaption><span>Composition</span><b>Structure in the frame</b></figcaption>
+      </figure>
+      <figure class="frame">
+        <svg viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="300" height="200" fill="var(--bg)"/>
+          <rect width="300" height="200" fill="var(--copper-soft)"/>
+          <path class="vf g" d="M0 140 C60 120 100 150 160 132 S260 120 300 138"/>
+          <path class="vf" d="M0 156 C60 138 100 166 160 148 S260 138 300 154"/>
+          <path class="vf b" d="M40 60 h30 M40 60 v30 M260 60 h-30 M260 60 v30"/>
+          <circle cx="210" cy="64" r="16" fill="var(--copper)" opacity=".85"/>
+        </svg>
+        <figcaption><span>Light</span><b>The story inside a scene</b></figcaption>
+      </figure>
+    </div>
+    <div class="photo-note reveal">
+      <p><b>Shutter &amp; Shloka 2026 &amp; Postcards from Afar</b>Photography competition organised by Pixophiles, IISER Berhampur — First Prize, for creativity and visual storytelling.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="activities" aria-labelledby="lead-h">
+  <div class="wrap">
+    <header class="sec-head reveal"><p class="sec-no">10 · Activities</p><h2 id="lead-h">Leadership &amp; activities</h2></header>
+    <div class="l-grid reveal">
+      <article class="lcard"><span class="ico" data-i="box" aria-hidden="true"></span><h3>INVENIO, KYRAT'26</h3><p class="role">Logistics Team Member</p><p>Coordinated venue logistics, volunteer support and event operations for academic and outreach programmes at IISER Berhampur.</p></article>
+      <article class="lcard"><span class="ico" data-i="spark" aria-hidden="true"></span><h3>JIGNYASA</h3><p class="role">Science outreach</p><p>Contributed to science outreach initiatives and institutional events through the student club, with teamwork and organisational support.</p></article>
+      <article class="lcard"><span class="ico" data-i="users" aria-hidden="true"></span><h3>La-Vida</h3><p class="role">Conferences &amp; workshops</p><p>Volunteered at scientific conferences and workshops at IISER Berhampur, gaining hands-on experience in event management.</p></article>
+    </div>
+    <ul class="tags focus reveal" aria-label="Focus areas"><li>Event coordination</li><li>Teamwork</li><li>Science outreach</li><li>Communication</li><li>Organisational skills</li></ul>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section id="credentials" aria-labelledby="cred-h">
+  <div class="wrap">
+    <header class="sec-head reveal"><p class="sec-no">11 · Document vault</p><h2 id="cred-h">Credentials</h2><p class="sub">Supporting documents and full reports, each opening in Google Drive. Other credentials are available on request.</p></header>
+    <div class="vault">
+      <article class="doc reveal"><div class="doc-prev" aria-hidden="true"><div class="page back"><i></i><i></i><i></i></div><div class="page"><i></i><i></i><i></i><i></i><i></i></div></div><div class="doc-body"><span class="doc-type"><span>Marksheet</span><span>2022</span></span><h3>Class X Marksheet</h3><p>Board of Secondary Education, Odisha</p><a class="btn ghost" href="https://drive.google.com/file/d/1TUehEbtam377PcEt0bnz7M9DZ1KcxTvt/view" target="_blank" rel="noopener noreferrer" aria-label="Open Class X Marksheet (opens in a new tab)">Open document <span class="arr" aria-hidden="true">↗</span></a></div></article>
+      <article class="doc reveal" style="--d:.06s"><div class="doc-prev" aria-hidden="true"><div class="page back"><i></i><i></i><i></i></div><div class="page"><i></i><i></i><i></i><i></i><i></i></div></div><div class="doc-body"><span class="doc-type"><span>Marksheet</span><span>2024</span></span><h3>Class XII Marksheet</h3><p>Council of Higher Secondary Education, Odisha</p><a class="btn ghost" href="https://drive.google.com/file/d/1NFqDvN-o6Q1-fRsFg8dFn9dSyFP-wO5O/view" target="_blank" rel="noopener noreferrer" aria-label="Open Class XII Marksheet (opens in a new tab)">Open document <span class="arr" aria-hidden="true">↗</span></a></div></article>
+      <article class="doc reveal" style="--d:.12s"><div class="doc-prev" aria-hidden="true"><div class="page back"><i></i><i></i><i></i></div><div class="page"><i></i><i></i><i></i><i></i><i></i></div></div><div class="doc-body"><span class="doc-type"><span>Research report</span><span>2026</span></span><h3>Sanskrit Scientific Literature</h3><p>Exploring Sanskrit Literature to Unravel Hidden Scientific Knowledge</p><a class="btn ghost" href="https://drive.google.com/file/d/1rw5SX2XhvRkx81Swwhg_s5runzSfiaSB/view" target="_blank" rel="noopener noreferrer" aria-label="Open Sanskrit Scientific Literature research report (opens in a new tab)">Open document <span class="arr" aria-hidden="true">↗</span></a></div></article>
+      <article class="doc reveal" style="--d:.18s"><div class="doc-prev" aria-hidden="true"><div class="page back"><i></i><i></i><i></i></div><div class="page"><i></i><i></i><i></i><i></i><i></i></div></div><div class="doc-body"><span class="doc-type"><span>Research report</span><span>2026</span></span><h3>Quadratic Reciprocity Law</h3><p>Number Theory internship report, IISER Berhampur</p><a class="btn ghost" href="https://drive.google.com/file/d/12mZOYmBXPNIIunout8GVU1rZrq_oEpog/view" target="_blank" rel="noopener noreferrer" aria-label="Open Quadratic Reciprocity research report (opens in a new tab)">Open document <span class="arr" aria-hidden="true">↗</span></a></div></article>
+      <article class="doc reveal" style="--d:.24s"><div class="doc-prev" aria-hidden="true"><div class="page back"><i></i><i></i><i></i></div><div class="page"><i></i><i></i><i></i><i></i><i></i></div></div><div class="doc-body"><span class="doc-type"><span>Manuscript</span><span>2026</span></span><h3>Shunya Ke Us Paar</h3><p>A science-based mystery novel in Hindi</p><a class="btn ghost" href="https://drive.google.com/file/d/16WHqCkc0Is8uV9mOREIy03bsjQtSVjPW/view" target="_blank" rel="noopener noreferrer" aria-label="Open the novel Shunya Ke Us Paar (opens in a new tab)">Open document <span class="arr" aria-hidden="true">↗</span></a></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- LINKEDIN -->
+<section id="connect" aria-labelledby="connect-h" style="padding-block:clamp(50px,7vw,90px) 0">
+  <div class="wrap">
+    <div class="connect reveal">
+      <svg class="in-logo" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="LinkedIn"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+      <div><h2 id="connect-h">Connect professionally</h2><p>Follow research updates and get in touch on LinkedIn.</p></div>
+      <a class="btn magnetic" href="https://www.linkedin.com/in/suman-sethi-824197388/" target="_blank" rel="noopener noreferrer">Open LinkedIn <span class="arr" aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" aria-labelledby="contact-h">
+  <div class="wrap c-grid">
+    <div class="reveal">
+      <p class="sec-no" style="margin-bottom:1rem">12 · Contact</p>
+      <h2 id="contact-h">Let's talk about mathematics, science, or research.</h2>
+      <p class="lead">I am interested in research, mathematical modelling, scientific computation, interdisciplinary science, and meaningful collaborations.</p>
+      <div class="btn-row">
+        <a class="btn magnetic" href="mailto:25160@iiserbpr.ac.in">Email Me <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn ghost magnetic" href="https://www.linkedin.com/in/suman-sethi-824197388/" target="_blank" rel="noopener noreferrer">LinkedIn <span class="arr" aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <dl class="c-list reveal" style="--d:.12s">
+      <div><dt>Email</dt><dd><a href="mailto:25160@iiserbpr.ac.in">25160@iiserbpr.ac.in</a></dd></div>
+      <div><dt>Secondary email</dt><dd><a href="mailto:Sumansethi11102006@gmail.com">Sumansethi11102006@gmail.com</a></dd></div>
+      <div><dt>Location</dt><dd>Brahmapur, Odisha, India</dd></div>
+    </dl>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div><p class="f-name" style="margin:0">Suman Sethi</p><p>BS–MS Student · IISER Berhampur</p></div>
+      <p style="margin:0">Mathematics · Science · Research · Writing</p>
+      <nav class="f-links" aria-label="Footer"><a href="https://www.linkedin.com/in/suman-sethi-824197388/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="mailto:25160@iiserbpr.ac.in">Email</a><a href="#credentials">Credentials</a></nav>
+    </div>
+    <div class="f-bottom"><span>© 2026 Suman Sethi</span><span class="sig" aria-label="f maps ideas to understanding">f : Ideas → Understanding ∎</span></div>
+  </div>
+</footer>
+
+<script>
+/* ───────────── Easy customisation ─────────────
+   CV_URL : paste a public link to your CV (PDF on Drive etc.). Until then, "View CV" scrolls to Education.
+   PHOTOS : add up to 3 photographs, e.g. {src:'https://…/photo.jpg', alt:'Describe the photo', title:'Title', note:'Short caption'}
+*/
+const CV_URL = '';
+const PHOTOS = [];
+
+(function(){
+'use strict';
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+const root=document.documentElement;
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+root.classList.add('js');
+
+/* theme */
+const themeBtn=$('#themeBtn');
+function setTheme(t,save){
+  if(t==='light')root.setAttribute('data-theme','light');else root.removeAttribute('data-theme');
+  themeBtn.setAttribute('aria-label',t==='light'?'Switch to dark theme':'Switch to light theme');
+  const m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='light'?'#F6F1E7':'#0D0D0D';
+  if(save){try{localStorage.setItem('ss-theme',t)}catch(e){}}
+  readColors();
+}
+themeBtn.addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='light'?'dark':'light',true));
+try{const t=localStorage.getItem('ss-theme');if(t==='light')setTheme('light',false)}catch(e){}
+
+/* CV link */
+if(CV_URL){const b=$('#cvBtn');b.href=CV_URL;b.target='_blank';b.rel='noopener noreferrer'}
+
+/* nav */
+const nav=$('#nav'),prog=$('#progress'),toggle=$('#navToggle'),menu=$('#menu'),navIcon=$('#navIcon');
+let ticking=false;
+function onScroll(){
+  if(ticking)return;ticking=true;
+  requestAnimationFrame(()=>{
+    const y=window.scrollY,h=document.documentElement.scrollHeight-innerHeight;
+    nav.classList.toggle('scrolled',y>24);
+    prog.style.transform='scaleX('+(h>0?Math.min(1,y/h):0)+')';
+    ticking=false;
+  });
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+function closeMenu(){menu.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open menu');navIcon.setAttribute('d','M4 8h16M4 16h16');document.body.style.overflow=''}
+toggle.addEventListener('click',()=>{
+  const open=!menu.classList.contains('open');
+  menu.classList.toggle('open',open);toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Close menu':'Open menu');
+  navIcon.setAttribute('d',open?'M6 6l12 12M18 6L6 18':'M4 8h16M4 16h16');document.body.style.overflow=open?'hidden':'';
+});
+$$('a',menu).forEach(a=>a.addEventListener('click',closeMenu));
+addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.classList.contains('open')){closeMenu();toggle.focus()}});
+addEventListener('resize',()=>{if(innerWidth>1040)closeMenu()});
+
+/* active section */
+const links=$$('.menu a');
+const secIO=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id))}})},{rootMargin:'-45% 0px -50% 0px'});
+$$('main section[id]').forEach(s=>secIO.observe(s));
+
+/* reveal */
+const revIO=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revIO.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+$$('.reveal').forEach(el=>revIO.observe(el));
+
+/* counters */
+function runCount(el){
+  const to=parseFloat(el.dataset.to),dec=+el.dataset.dec||0;
+  if(reduce){el.textContent=to.toFixed(dec);return}
+  const t0=performance.now(),dur=1400;el.textContent=(0).toFixed(dec);
+  (function step(t){const p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3);el.textContent=(to*e).toFixed(dec);if(p<1)requestAnimationFrame(step)})(t0);
+}
+const cIO=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){runCount(e.target);cIO.unobserve(e.target)}})},{threshold:.6});
+$$('.count').forEach(el=>cIO.observe(el));
+
+/* research map */
+const mapWrap=$('#mapWrap');
+new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){mapWrap.classList.add('in');o.disconnect()}},{threshold:.25}).observe(mapWrap);
+const detail=$('#mapDetail'),nodes=$$('.node');
+function activate(b){
+  nodes.forEach(n=>{n.setAttribute('aria-pressed','false');n.classList.remove('lit')});
+  b.setAttribute('aria-pressed','true');
+  const chain=b.closest('.chain'),list=$$('.node',chain);
+  list.slice(0,list.indexOf(b)).forEach(n=>n.classList.add('lit'));
+  detail.innerHTML='<strong>'+b.dataset.t+'</strong>'+b.dataset.d;
+}
+nodes.forEach(b=>{b.addEventListener('click',()=>activate(b));b.addEventListener('focus',()=>activate(b));if(fine)b.addEventListener('mouseenter',()=>activate(b))});
+activate(nodes[1]);
+
+/* icons */
+const IC={
+  medal:'<circle cx="12" cy="9" r="5"/><path d="M8.5 13.5 7 21l5-3 5 3-1.5-7.5"/>',
+  pi:'<path d="M4 7h16M8 7v11M15 7c0 6 0 9 3 11"/>',
+  book:'<path d="M4 5h6a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H4zM20 5h-6a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h6z"/>',
+  flask:'<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M8 15h8"/>',
+  quiz:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17h.01"/>',
+  camera:'<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>',
+  box:'<path d="M3 7l9-4 9 4v10l-9 4-9-4zM3 7l9 4 9-4M12 11v10"/>',
+  spark:'<circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/>',
+  users:'<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.5 2.5-6 6-6s6 2.5 6 6M16 5a3 3 0 0 1 0 6M18 14c2 .7 3 2.6 3 5"/>'
+};
+$$('.ico').forEach(el=>{el.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">'+IC[el.dataset.i]+'</svg>'});
+
+/* mathematical visualisations (all generated from the actual mathematics) */
+const f=n=>+n.toFixed(2);
+const isPrime=n=>{if(n<2)return false;for(let i=2;i*i<=n;i+=1)if(n%i===0)return false;return true};
+const gp=(a,b)=>{a=Math.abs(a);b=Math.abs(b);if(!a&&!b)return false;if(!b)return isPrime(a)&&a%4===3;if(!a)return isPrime(b)&&b%4===3;return isPrime(a*a+b*b)};
+const V={
+  nt(){const p=13,cx=100,cy=70,R=44,qr=new Set();for(let x=1;x<p;x++)qr.add(x*x%p);
+    const pts=[];for(let n=1;n<p;n++){const a=(-90+(n-1)*30)*Math.PI/180;pts.push({n,x:cx+R*Math.cos(a),y:cy+R*Math.sin(a),lx:cx+(R+15)*Math.cos(a),ly:cy+(R+15)*Math.sin(a)+3})}
+    let s='<circle cx="100" cy="70" r="44" class="ln"/><polygon class="poly" points="'+pts.filter(o=>qr.has(o.n)).map(o=>f(o.x)+','+f(o.y)).join(' ')+'"/>';
+    pts.forEach(o=>{s+=qr.has(o.n)?'<circle cx="'+f(o.x)+'" cy="'+f(o.y)+'" r="4.5" class="dotc"/>':'<circle cx="'+f(o.x)+'" cy="'+f(o.y)+'" r="3.4" class="dotm"/>';s+='<text x="'+f(o.lx)+'" y="'+f(o.ly)+'" text-anchor="middle" class="lb">'+o.n+'</text>'});
+    return s+'<text x="100" y="74" text-anchor="middle" class="lb big">(a/13)</text>'},
+  alg(){const s=16,cx=100,cy=70;let o='<line x1="8" y1="70" x2="192" y2="70" class="ln"/><line x1="100" y1="8" x2="100" y2="132" class="ln"/>';
+    for(let a=-5;a<=5;a++)for(let b=-3;b<=3;b++){const x=cx+a*s,y=cy-b*s;o+=gp(a,b)?'<circle cx="'+x+'" cy="'+y+'" r="4.3" class="dotc"/>':'<circle cx="'+x+'" cy="'+y+'" r="1.3" class="dotd"/>'}
+    return o+'<text x="186" y="64" text-anchor="end" class="lb big">ℤ[i]</text>'},
+  astro(){const cx=100,cy=70,R=38,r=10,k=6;let d='';for(let i=0;i<=360;i++){const t=i/360*2*Math.PI;d+=(i?'L':'M')+f(cx+R*Math.cos(t)+r*Math.cos(k*t))+' '+f(cy-(R*Math.sin(t)+r*Math.sin(k*t)))}
+    return '<circle cx="100" cy="70" r="38" class="dash"/><path id="epi" d="'+d+'Z" class="curve"/><circle cx="100" cy="70" r="3" class="dotm"/><circle r="3.6" class="dotc"><animateMotion dur="16s" repeatCount="indefinite"><mpath href="#epi"/></animateMotion></circle><text x="6" y="14" class="lb">deferent + epicycle</text>'},
+  model(){const K=100,r=.9,Y=t=>120-t*.8;let o='<line x1="20" y1="120" x2="192" y2="120" class="ln"/><line x1="20" y1="12" x2="20" y2="120" class="ln"/><line x1="20" y1="'+Y(K)+'" x2="192" y2="'+Y(K)+'" class="dash"/><text x="188" y="'+(Y(K)-4)+'" text-anchor="end" class="lb">K</text>';
+    [5,20,60,130].forEach((p0,i)=>{let d='';for(let j=0;j<=60;j++){const t=j/60*8,P=K/(1+((K-p0)/p0)*Math.exp(-r*t));d+=(j?'L':'M')+f(20+t/8*170)+' '+f(Y(P))}o+='<path d="'+d+'" class="curve" style="opacity:'+(.4+i*.2)+'"/>'});return o},
+  lin(){const s=10,cx=100,cy=70,P=(x,y)=>[cx+(2*x+y)*s,cy-(x+2*y)*s];let o='';
+    for(let i=-2;i<=2;i++){o+='<line x1="'+(cx+i*s)+'" y1="'+(cy-2*s)+'" x2="'+(cx+i*s)+'" y2="'+(cy+2*s)+'" class="ln"/><line x1="'+(cx-2*s)+'" y1="'+(cy-i*s)+'" x2="'+(cx+2*s)+'" y2="'+(cy-i*s)+'" class="ln"/>';
+      const a=P(i,-2),b=P(i,2),c=P(-2,i),d=P(2,i);o+='<line x1="'+a[0]+'" y1="'+a[1]+'" x2="'+b[0]+'" y2="'+b[1]+'" class="thin"/><line x1="'+c[0]+'" y1="'+c[1]+'" x2="'+d[0]+'" y2="'+d[1]+'" class="thin"/>'}
+    return o+'<line x1="45" y1="125" x2="155" y2="15" class="dash"/><line x1="45" y1="15" x2="155" y2="125" class="dash"/><text x="160" y="16" class="lb">λ=3</text><text x="160" y="129" class="lb">λ=1</text>'},
+  calc(){const x0=25,w=150,y0=118,h=80,n=8;let o='<line x1="20" y1="118" x2="184" y2="118" class="ln"/><line x1="25" y1="14" x2="25" y2="122" class="ln"/>';
+    for(let i=0;i<n;i++){const b=Math.sin((i+.5)/n*Math.PI);o+='<rect x="'+f(x0+i/n*w)+'" y="'+f(y0-b*h)+'" width="'+f(w/n)+'" height="'+f(b*h)+'" class="bar"/>'}
+    let d='';for(let j=0;j<=60;j++){const t=j/60*Math.PI;d+=(j?'L':'M')+f(x0+t/Math.PI*w)+' '+f(y0-Math.sin(t)*h)}
+    const tx=x0+(Math.PI/3)/Math.PI*w,ty=y0-Math.sin(Math.PI/3)*h,m=-Math.cos(Math.PI/3)*h/(w/Math.PI);
+    return o+'<path d="'+d+'" class="curve g"/><line x1="'+f(tx-32)+'" y1="'+f(ty-m*32)+'" x2="'+f(tx+32)+'" y2="'+f(ty+m*32)+'" class="curve f"/><circle cx="'+f(tx)+'" cy="'+f(ty)+'" r="3" class="dotc"/><text x="180" y="132" text-anchor="end" class="lb">π</text>'},
+  qm(){const x0=30,L=140;let o='<line x1="30" y1="10" x2="30" y2="126" class="ln"/><line x1="170" y1="10" x2="170" y2="126" class="ln"/><line x1="30" y1="126" x2="170" y2="126" class="ln"/>';
+    [1,2,3].forEach(n=>{const base=118-10*n*n;let d='';for(let j=0;j<=80;j++){const u=j/80;d+=(j?'L':'M')+f(x0+u*L)+' '+f(base-8*Math.sin(n*Math.PI*u))}
+      o+='<line x1="30" y1="'+base+'" x2="170" y2="'+base+'" class="dash" style="opacity:.45"/><path d="'+d+'" class="curve'+(n===2?' g':n===3?' f':'')+'"/><text x="175" y="'+(base+3)+'" class="lb">n='+n+'</text>'});return o},
+  ulam(){const N=13,sz=10;let x=0,y=0,dx=1,dy=0,seg=1,cnt=0,turn=0,o='';const pos=[[0,0]];
+    for(let n=2;n<=N*N;n++){x+=dx;y+=dy;pos.push([x,y]);cnt++;if(cnt===seg){cnt=0;const t=dx;dx=-dy;dy=t;turn++;if(turn%2===0)seg++}}
+    pos.forEach((p,i)=>{const n=i+1,px=100+p[0]*sz,py=70-p[1]*sz;o+=isPrime(n)?'<circle cx="'+px+'" cy="'+py+'" r="3.6" class="dotc"/>':'<circle cx="'+px+'" cy="'+py+'" r=".9" class="dotd"/>'});return o}
+};
+$$('.viz').forEach(el=>{const g=V[el.dataset.viz];if(g)el.innerHTML='<svg viewBox="0 0 200 140" aria-hidden="true">'+g()+'</svg>'});
+if(reduce)$$('svg').forEach(s=>{try{s.pauseAnimations()}catch(e){}});
+
+/* hero SVG dynamic layers */
+(function(){
+  const polar=$('#polar'),dyn=$('#dyn');let p='';
+  [60,120,180,240].forEach(r=>p+='<circle cx="300" cy="300" r="'+r+'" class="v-faint"/>');
+  for(let a=0;a<360;a+=30){const t=a*Math.PI/180;p+='<line x1="300" y1="300" x2="'+f(300+250*Math.cos(t))+'" y2="'+f(300-250*Math.sin(t))+'" class="v-faint"/>'}
+  p+='<line x1="20" y1="300" x2="580" y2="300" class="v-line"/><line x1="300" y1="20" x2="300" y2="580" class="v-line"/>';
+  for(let i=-9;i<=9;i++){if(!i)continue;p+='<line x1="'+(300+i*30)+'" y1="296" x2="'+(300+i*30)+'" y2="304" class="v-line"/><line x1="296" y1="'+(300+i*30)+'" x2="304" y2="'+(300+i*30)+'" class="v-line"/>'}
+  polar.innerHTML=p;
+  let d='';for(let i=0;i<=120;i++){const x=70+i*4.1,y=498-24*Math.sin(i/120*Math.PI*4);d+=(i?'L':'M')+f(x)+' '+f(y)}
+  dyn.innerHTML='<path d="'+d+'" class="sine"/><text x="70" y="536" class="frag" style="font-size:11px">y = sin θ</text>';
+})();
+
+/* hero: spotlight + math particles */
+const hero=$('.hero');
+if(fine&&!reduce)hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();hero.style.setProperty('--mx',(e.clientX-r.left)+'px');hero.style.setProperty('--my',(e.clientY-r.top)+'px')},{passive:true});
+let col='#A7A29A',acc='#D97732',draw=()=>{};
+function readColors(){const cs=getComputedStyle(root);col=cs.getPropertyValue('--muted').trim()||col;acc=cs.getPropertyValue('--copper').trim()||acc;if(reduce)draw()}
+(function(){
+  const c=$('#pcanvas'),ctx=c.getContext('2d');let W=0,H=0,parts=[],mx=-999,my=-999,run=false;
+  const G=['π','∑','∫','∞','ζ','∂','√','≡','∈','ℤ','ℚ','∇','0','1','2','3','5','7','11','13','17'];
+  function size(){const r=c.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);W=r.width;H=r.height;c.width=W*d;c.height=H*d;ctx.setTransform(d,0,0,d,0,0);
+    parts=Array.from({length:W<700?16:32},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.16,vy:(Math.random()-.5)*.16,g:G[Math.random()*G.length|0],s:12+Math.random()*16,a:.07+Math.random()*.13,p:Math.random()<.14}))}
+  draw=function(){
+    ctx.clearRect(0,0,W,H);
+    for(const p of parts){
+      if(!reduce){p.x+=p.vx;p.y+=p.vy;const dx=p.x-mx,dy=p.y-my,d=dx*dx+dy*dy;if(d<16000){const k=(1-d/16000)*1.1,l=Math.sqrt(d)+1;p.x+=dx/l*k;p.y+=dy/l*k}
+        if(p.x<-30)p.x=W+30;if(p.x>W+30)p.x=-30;if(p.y<-30)p.y=H+30;if(p.y>H+30)p.y=-30}
+      ctx.globalAlpha=p.a;ctx.fillStyle=p.p?acc:col;ctx.font=p.s+'px "IBM Plex Mono",monospace';ctx.fillText(p.g,p.x,p.y)
+    }
+    if(run&&!reduce)requestAnimationFrame(draw)
+  };
+  size();readColors();draw();
+  addEventListener('resize',()=>{size();draw()});
+  hero.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top},{passive:true});
+  hero.addEventListener('pointerleave',()=>{mx=my=-999});
+  new IntersectionObserver(es=>{const v=es[0].isIntersecting;if(v&&!run&&!reduce){run=true;requestAnimationFrame(draw)}else if(!v)run=false}).observe(hero);
+})();
+
+/* cursor ring + magnetic buttons */
+if(fine&&!reduce){
+  const cur=$('.cursor');let tx=0,ty=0,cx=0,cy=0,shown=false;
+  addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY;if(!shown){shown=true;cur.classList.add('on');cx=tx;cy=ty}
+    cur.classList.toggle('hot',!!e.target.closest('a,button,.node'))},{passive:true});
+  document.addEventListener('pointerleave',()=>{cur.classList.remove('on');shown=false});
+  (function loop(){cx+=(tx-cx)*.18;cy+=(ty-cy)*.18;cur.style.transform='translate('+cx+'px,'+cy+'px)';requestAnimationFrame(loop)})();
+  $$('.magnetic').forEach(b=>{
+    b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.setProperty('--bx',((e.clientX-r.left-r.width/2)*.12).toFixed(1)+'px');b.style.setProperty('--by',((e.clientY-r.top-r.height/2)*.18).toFixed(1)+'px')});
+    b.addEventListener('pointerleave',()=>{b.style.setProperty('--bx','0px');b.style.setProperty('--by','0px')});
+  });
+}
+
+/* optional real photographs */
+const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+$$('.frame').forEach((fr,i)=>{const p=PHOTOS[i];if(!p||!p.src)return;
+  fr.innerHTML='<img src="'+esc(p.src)+'" alt="'+esc(p.alt)+'" loading="lazy" decoding="async">'+(p.title?'<figcaption><span>'+esc(p.note||'')+'</span><b>'+esc(p.title)+'</b></figcaption>':'')});
+})();
+</script>
+</body>
+</html>
